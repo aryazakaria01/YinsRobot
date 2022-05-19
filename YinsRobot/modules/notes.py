@@ -383,9 +383,9 @@ def list_notes(update: Update, context: CallbackContext):
             note_name = f"⪼ `{(note.name.lower())}`\n"
         else:
             note_name = f"⪼ `{(note.name.lower())}`\n"
+            msg = "\n\nAnda dapat mengambil catatan ini dengan menggunakan `/get notename` atau `#notename"
         if len(msg) + len(note_name) > MAX_MESSAGE_LENGTH:
             update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
-            msg = "\n\nAnda dapat mengambil catatan ini dengan menggunakan `/get notename` atau `#notename"
             msg = ""
         msg += note_name
 
