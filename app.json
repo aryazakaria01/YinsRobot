@@ -105,23 +105,23 @@
          "description": "Required for timezone information. Get yours from https://timezonedb.com/api",
          "required": true,
          "value": "-xyz"
-     }, 
+      }, 
 
       "DEV_USERS": {
          "description": "ID of users who are Devs of your bot (can use /py etc.). If you are a noob and would come and bother Masha support then keep the current ID's here at they are and add yours.",
          "required": false,
          "value": "1700405732"
-     },
+      },
       "ERROR_LOG": {
          "description": "ID of log for show error.",
          "required": false,
          "value": "-1001671138673"
-     },
-        "ARQ_API": {
-            "description": "Get this from @ARQRobot.",
-            "required": true
-        },
-
+      },
+      "ARQ_API": {
+         "description": "Get this from @ARQRobot.",
+         "required": true
+         "value": "KPXUXC-TOLUVU-OUKBJT-HCPRJG-ARQ"
+      },
       "STRICT_GBAN": {
          "description": "Enforce gbans across new groups as well as old groups. When a gbanned user talks, he will be banned.",
          "value": "True"
