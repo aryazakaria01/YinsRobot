@@ -384,7 +384,7 @@ def list_notes(update: Update, context: CallbackContext):
             note_name = f"⪼ `{(note.name.lower())}`\n"
         else:
             note_name = f"⪼ `{(note.name.lower())}`\n"
-        if len(msg) + len(note_name) + len(msg) > MAX_MESSAGE_LENGTH:
+        if len(msg) + len(note_name) > MAX_MESSAGE_LENGTH:
             update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
             msg = ""
         msg += note_name
