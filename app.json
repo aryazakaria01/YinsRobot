@@ -10,11 +10,11 @@
       ],
     
    "logo":    "https://telegra.ph/file/64f4b1e3ab6d6911447d2.jpg",  
-   "repository": "https://github.com/AyiinXd/https://github.com/AyiinXd/YinsRobot",
+   "repository": "https://github.com/YinsXd/YinsRobot",
    "addons": [
           {
          "options": {
-            "version": "12"
+            "version": "13"
          },
          "plan": "heroku-postgresql"
       }
@@ -31,45 +31,46 @@
       "TOKEN": {
          "description": "Your bot token. Get one from @BotFather duh",
          "required": true,
-         "value": ""
+         "value": "5259433209:AAFEbFJkU7MXd5eqJyS20BGEOxHbkmcSYCU"
       },
       "API_ID": {
          "description": "Get API_ID from my.telegram.org, used for telethon based modules.",
          "required": true,
-         "value": ""
+         "value": "14445856"
       },
       "API_HASH": {
          "description": "Get API_HASH from my.telegram.org, used for telethon based modules.",
          "required": true,
-         "value": ""
+         "value": "94edf376e6766b264b8b521160c9b766"
       },    
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
          "required": true,
-         "value": "2088106582"
+         "value": "1700405732"
      },
 
       "STRING_SESSION": {
          "description": "Fill with telethon string session.",
          "required": true,
-         "value": "" 
+         "value": "1BVtsOHIBu3VCZQOHIDyhYbTRlHPoMOY_glSuL_bN6DYCYGiLsMY_TQ0BozuABtYwxR6KT4-zkxq2QA0f-2RFnHEBcc_pc28CZZZkglpBam_Nl9hxgwoDh-3OlUFTbunAaGGGZD6PlvvD-3MLCXhaTZGuYtGjl7Px7WkQWoz9HsOkDIV26T2Zb4GiMqVm9dbX5rv7TyJ8De_8iQ6EVURe0k4omCZN1pO2TwoqZz5MRdaboZwf5VYpmHrEUFNyTAw_dZDJm2CiP6Q1toO6TgH9vrio8X21X0RTf1UFZM3fA8sGt1zYpt0Ow_I66v_wjL2aLDkNp0_AaQ18Z1kM6PV_kd0oibQYGoU=" 
       },
       "HEROKU_API_KEY": {
         "description": "Your Heroku API key, get it from 'https://dashboard.heroku.com/account'",
-        "value": ""
+        "value": "ba40ec17-19ce-470f-9a27-c05d0e458920"
       },
       "HEROKU_APP_NAME": {
         "description": "Enter the Heroku app name here (Must an exact same name with your input above).",
         "required": false
+        "value": "yinzz"
       },
       "BOT_USERNAME": {
          "description": "username of your bot without the @",
-         "value": "emiexrobot"
+         "value": "YinzRobot"
       },
 
       "BOT_ID": {
          "description": "to get your bot_id using other bot or userbot",
-         "value": ""
+         "value": "5260657154"
       },
 
       "OWNER_USERNAME": {
@@ -84,7 +85,7 @@
       "MONGO_DB_URI": {
          "description": "Required for database connections.",
          "required": true,
-         "value": ""
+         "value": "mongodb+srv://userbot:userbot@cluster0.xe3hh.mongodb.net/test?myFirstDatabase?retryWrites=true&w=majority"
       },
       "IBM_WATSON_CRED_URL": {
          "description": "This is required for the speech to text module. Get your USERNAME from https://console.bluemix.net/docs/services/speech-to-text/getting-started.html",
@@ -97,12 +98,12 @@
      "EVENT_LOGS": {
          "description": "Event logs channel to note down important bot level events, recommend to make this public. ex: '-123456'",
          "required": true,
-         "value": "-1001626554919"
+         "value": "-1001671138673"
       },
       "JOIN_LOGGER": {
          "description": "A channel where bot will print who added it to what group, useful during debugging or spam handling.",
          "required": true,
-         "value": "-1001626554919"
+         "value": "-1001671138673"
       },      
       "CASH_API_KEY": {
          "description": "Required for currency converter. Get yours from https://www.alphavantage.co/support/#api-key",
@@ -129,11 +130,12 @@
       "ERROR_LOG": {
          "description": "ID of log for show error.",
          "required": false,
-         "value": ""
+         "value": "-1001671138673"
      },
         "ARQ_API": {
             "description": "Get this from @ARQRobot.",
             "required": true
+            "value": "KPXUXC-TOLUVU-OUKBJT-HCPRJG-ARQ"
         },
 
       "SPAMWATCH_API": {
@@ -148,22 +150,22 @@
       "DRAGONS": {
          "description": "A space separated list of user IDs who you want to assign as sudo users.",
          "required": false,
-         "value": ""
+         "value": "1700405732"
       },
       "DEMONS": {
          "description": "A space separated list of user IDs who you wanna assign as support users(gban perms only).",
          "required": false,
-         "value": ""
+         "value": "1700405732"
       },
       "TIGERS": {
          "description": "A space separated list of user IDs who you wanna assign as tiger users.",
          "required": false,
-         "value": ""
+         "value": "1700405732"
       },
       "WOLVES": {
          "description": "A space separated list of user IDs who you want to assign as whitelisted - can't be banned with your bot.",
          "required": false,
-         "value": ""
+         "value": "1700405732"
       },
       "ENV": {
          "description": "Setting this to ANYTHING will enable environment variables. Leave it as it is",
@@ -182,7 +184,7 @@
       "URL": {
          "description": "The Heroku App URL :-  https://<appname>.herokuapp.com/",
          "required": false,
-         "value": ""
+         "value": "https://yinzz.herokuapp.com/"
       },
       "NO_LOAD": {
          "description": "Dont load these modules cause they shit, space separation",
@@ -201,7 +203,7 @@
       "DONATION_LINK": {
          "description": "Optional: link where you would like to receive donations. If you are a noob, better leave it linking to paul",
          "required": false,
-         "value": "https://www.paypal.me/PaulSonOfLars"
+         "value": "https://t.me/AyiinSupport/100"
       },
       "DEL_CMDS": {
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
