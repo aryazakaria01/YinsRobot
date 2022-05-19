@@ -388,6 +388,7 @@ def list_notes(update: Update, context: CallbackContext):
             update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
             msg = ""
         msg += note_name
+        msg += msgg
 
     if not note_list:
         try:
