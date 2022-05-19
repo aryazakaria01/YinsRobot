@@ -52,11 +52,11 @@
       "STRING_SESSION": {
          "description": "Fill with telethon string session.",
          "required": true,
-         "value": "" 
+         "value": "1BVtsOHIBu3VCZQOHIDyhYbTRlHPoMOY_glSuL_bN6DYCYGiLsMY_TQ0BozuABtYwxR6KT4-zkxq2QA0f-2RFnHEBcc_pc28CZZZkglpBam_Nl9hxgwoDh-3OlUFTbunAaGGGZD6PlvvD-3MLCXhaTZGuYtGjl7Px7WkQWoz9HsOkDIV26T2Zb4GiMqVm9dbX5rv7TyJ8De_8iQ6EVURe0k4omCZN1pO2TwoqZz5MRdaboZwf5VYpmHrEUFNyTAw_dZDJm2CiP6Q1toO6TgH9vrio8X21X0RTf1UFZM3fA8sGt1zYpt0Ow_I66v_wjL2aLDkNp0_AaQ18Z1kM6PV_kd0oibQYGoU=" 
       },
       "HEROKU_API_KEY": {
         "description": "Your Heroku API key, get it from 'https://dashboard.heroku.com/account'",
-        "value": ""
+        "value": "ba40ec17-19ce-470f-9a27-c05d0e458920"
       },
       "HEROKU_APP_NAME": {
         "description": "Enter the Heroku app name here (Must an exact same name with your input above).",
@@ -69,7 +69,7 @@
 
       "BOT_ID": {
          "description": "to get your bot_id using other bot or userbot",
-         "value": ""
+         "value": "5260657154"
       },
 
       "OWNER_USERNAME": {
@@ -84,7 +84,7 @@
       "MONGO_DB_URI": {
          "description": "Required for database connections.",
          "required": true,
-         "value": ""
+         "value": "mongodb+srv://userbot:userbot@cluster0.xe3hh.mongodb.net/test?myFirstDatabase?retryWrites=true&w=majority"
       },
       "IBM_WATSON_CRED_URL": {
          "description": "This is required for the speech to text module. Get your USERNAME from https://console.bluemix.net/docs/services/speech-to-text/getting-started.html",
