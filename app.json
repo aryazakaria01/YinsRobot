@@ -31,22 +31,22 @@
       "TOKEN": {
          "description": "Your bot token. Get one from @BotFather duh",
          "required": true,
-         "value": ""
+         "value": "5259433209:AAFEbFJkU7MXd5eqJyS20BGEOxHbkmcSYCU"
       },
       "API_ID": {
          "description": "Get API_ID from my.telegram.org, used for telethon based modules.",
          "required": true,
-         "value": ""
+         "value": "14445856"
       },
       "API_HASH": {
          "description": "Get API_HASH from my.telegram.org, used for telethon based modules.",
          "required": true,
-         "value": ""
+         "value": "94edf376e6766b264b8b521160c9b766"
       },    
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
          "required": true,
-         "value": ""
+         "value": "1700405732"
      },
 
       "STRING_SESSION": {
