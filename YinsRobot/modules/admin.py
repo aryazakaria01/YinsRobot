@@ -765,18 +765,18 @@ def adminlist(update, context):
 
     try:
         msg = update.effective_message.reply_text(
-            "Fetching group admins...",
+            "Mengambil admin grup...",
             parse_mode=ParseMode.HTML,
         )
     except BadRequest:
         msg = update.effective_message.reply_text(
-            "Fetching group admins...",
+            "Mengambil admin grup...",
             quote=False,
             parse_mode=ParseMode.HTML,
         )
 
     administrators = bot.getChatAdministrators(chat_id)
-    text = "Admins in <b>{}</b>:".format(html.escape(update.effective_chat.title))
+    text = "Admin di <b>{}</b>:".format(html.escape(update.effective_chat.title))
 
     for admin in administrators:
         user = admin.user
@@ -800,13 +800,13 @@ def adminlist(update, context):
         # if user.username:
         #    name = escape_markdown("@" + user.username)
         if status == "creator":
-            text += "\n 🌏 Creator:"
-            text += "\n<code> • </code>{}\n".format(name)
+            text += "\n🧑‍💻 Creator:"
+            text += "\n<code>⪼ </code>{}\n".format(name)
 
             if custom_title:
                 text += f"<code> ┗━ {html.escape(custom_title)}</code>\n"
 
-    text += "\n🌟 Admins:"
+    text += "\n👮‍♂ Admins:"
 
     custom_admin_list = {}
     normal_admin_list = []
@@ -837,11 +837,11 @@ def adminlist(update, context):
                 normal_admin_list.append(name)
 
     for admin in normal_admin_list:
-        text += "\n<code> • </code>{}".format(admin)
+        text += "\n<code>⪼ </code>{}".format(admin)
 
     for admin_group in custom_admin_list.copy():
         if len(custom_admin_list[admin_group]) == 1:
-            text += "\n<code> • </code>{} | <code>{}</code>".format(
+            text += "\n<code>⪼  </code>{}\n ➥ <code>{}</code>".format(
                 custom_admin_list[admin_group][0],
                 html.escape(admin_group),
             )
@@ -851,7 +851,7 @@ def adminlist(update, context):
     for admin_group, value in custom_admin_list.items():
         text += "\n🚨 <code>{}</code>".format(admin_group)
         for admin in value:
-            text += "\n<code> • </code>{}".format(admin)
+            text += "\n<code> - </code>{}".format(admin)
         text += "\n"
 
     try:
@@ -921,7 +921,7 @@ def button(update: Update, context: CallbackContext) -> str:
   
 __help__ = """
 *User Commands*:
-❂ /admins*:* list of admins in the chat
+❂ /staff*:* list of admins in the chat
 ❂ /pinned*:* to get the current pinned message.
 
 *The Following Commands are Admins only:* 
@@ -953,7 +953,7 @@ SETCHATPIC_HANDLER = CommandHandler("setgpic", setchatpic, filters=Filters.chat_
 RMCHATPIC_HANDLER = CommandHandler("delgpic", rmchatpic, filters=Filters.chat_type.groups, run_async=True)
 SETCHAT_TITLE_HANDLER = CommandHandler("setgtitle", setchat_title, filters=Filters.chat_type.groups, run_async=True)
 
-ADMINLIST_HANDLER = DisableAbleCommandHandler("admins", adminlist, run_async=True)
+ADMINLIST_HANDLER = DisableAbleCommandHandler("staff", adminlist, run_async=True)
 
 PIN_HANDLER = CommandHandler("pin", pin, filters=Filters.chat_type.groups, run_async=True)
 UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=Filters.chat_type.groups, run_async=True)
@@ -994,7 +994,7 @@ __command_list__ = [
     "delgpic"
     "setgtitle"
     "adminlist",
-    "admins", 
+    "staff", 
     "invitelink", 
     "promote", 
     "fullpromote",
