@@ -374,18 +374,19 @@ def clearall_btn(update: Update, context: CallbackContext):
 
 @connection_status
 def list_notes(update: Update, context: CallbackContext):
-    chat_id = update.effective_chat.id
-    note_list = sql.get_all_chat_notes(chat_id)
+    entity = update.effective_chat
+    note_list = sql.get_all_chat_notes(entity.id)
     notes = len(note_list) + 1
-    msg = "Get note by `/notenumber` or `#notename` \n\n  *ID*    *Note* \n"
+    msg = f"Daftar catatan dalam {entity.title}\n\n"
     for note_id, note in zip(range(1, notes), note_list):
         if note_id < 10:
-            note_name = f"`{note_id:2}.`  `#{(note.name.lower())}`\n"
+            note_name = f"⪼ `{(note.name.lower())}`\n"
         else:
-            note_name = f"`{note_id}.`  `#{(note.name.lower())}`\n"
+            note_name = f"⪼ `{(note.name.lower())}`\n"
         if len(msg) + len(note_name) > MAX_MESSAGE_LENGTH:
             update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
             msg = ""
+            msg = "\n\nAnda dapat mengambil catatan ini dengan menggunakan `/get notename` atau `#notename"
         msg += note_name
 
     if not note_list:
