@@ -36,17 +36,17 @@
       "API_ID": {
          "description": "Get API_ID from my.telegram.org, used for telethon based modules.",
          "required": true,
-         "value": "14445856"
+         "value": ""
       },
       "API_HASH": {
          "description": "Get API_HASH from my.telegram.org, used for telethon based modules.",
          "required": true,
-         "value": "94edf376e6766b264b8b521160c9b766"
+         "value": ""
       },    
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
          "required": true,
-         "value": "1700405732"
+         "value": ""
      },
 
       "STRING_SESSION": {
@@ -69,7 +69,7 @@
 
       "BOT_ID": {
          "description": "to get your bot_id using other bot or userbot",
-         "value": "5260657154"
+         "value": ""
       },
 
       "OWNER_USERNAME": {
@@ -97,7 +97,7 @@
      "EVENT_LOGS": {
          "description": "Event logs channel to note down important bot level events, recommend to make this public. ex: '-123456'",
          "required": true,
-         "value": "-1001671138673"
+         "value": ""
       },
       "JOIN_LOGGER": {
          "description": "A channel where bot will print who added it to what group, useful during debugging or spam handling.",
@@ -124,17 +124,16 @@
       "DEV_USERS": {
          "description": "ID of users who are Devs of your bot (can use /py etc.). If you are a noob and would come and bother Masha support then keep the current ID's here at they are and add yours.",
          "required": false,
-         "value": "1700405732"
+         "value": ""
      },
       "ERROR_LOG": {
          "description": "ID of log for show error.",
          "required": false,
-         "value": "-1001671138673"
+         "value": ""
      },
         "ARQ_API": {
             "description": "Get this from @ARQRobot.",
             "required": true
-            "value": "KPXUXC-TOLUVU-OUKBJT-HCPRJG-ARQ"
         },
 
       "SPAMWATCH_API": {
@@ -149,22 +148,22 @@
       "DRAGONS": {
          "description": "A space separated list of user IDs who you want to assign as sudo users.",
          "required": false,
-         "value": "1700405732"
+         "value": ""
       },
       "DEMONS": {
          "description": "A space separated list of user IDs who you wanna assign as support users(gban perms only).",
          "required": false,
-         "value": "1700405732"
+         "value": ""
       },
       "TIGERS": {
          "description": "A space separated list of user IDs who you wanna assign as tiger users.",
          "required": false,
-         "value": "1700405732"
+         "value": ""
       },
       "WOLVES": {
          "description": "A space separated list of user IDs who you want to assign as whitelisted - can't be banned with your bot.",
          "required": false,
-         "value": "1700405732"
+         "value": ""
       },
       "ENV": {
          "description": "Setting this to ANYTHING will enable environment variables. Leave it as it is",
@@ -183,7 +182,7 @@
       "URL": {
          "description": "The Heroku App URL :-  https://<appname>.herokuapp.com/",
          "required": false,
-         "value": "https://yinzz.herokuapp.com/"
+         "value": ""
       },
       "NO_LOAD": {
          "description": "Dont load these modules cause they shit, space separation",
