@@ -253,7 +253,7 @@ def slash_get(update: Update, context: CallbackContext):
         note_name = str(noteid).strip(">").split()[1]
         get(update, context, note_name, show_none=False)
     except IndexError:
-        update.effective_message.reply_text("Wrong Note ID 😾")
+        update.effective_message.reply_text("ID Catatan Salah 😾")
 
 
 @user_admin
@@ -265,7 +265,7 @@ def save(update: Update, context: CallbackContext):
     note_name, text, data_type, content, buttons = get_note_type(msg)
     note_name = note_name.lower()
     if data_type is None:
-        msg.reply_text("Dude, there's no note")
+        msg.reply_text("Bung, tidak ada catatan")
         return
 
     sql.add_note_to_db(
@@ -278,7 +278,7 @@ def save(update: Update, context: CallbackContext):
     )
 
     msg.reply_text(
-        f"Yas! Added `{note_name}`.\nGet it with /get `{note_name}`, or `#{note_name}`",
+        f"Ya! Ditambahkan `{note_name}`.\nDapatkan itu dengan /get `{note_name}`",
         parse_mode=ParseMode.MARKDOWN,
     )
 
@@ -292,10 +292,10 @@ def save(update: Update, context: CallbackContext):
             )
         else:
             msg.reply_text(
-                "Bots are kinda handicapped by telegram, making it hard for bots to "
-                "interact with other bots, so I can't save this message "
-                "like I usually would - do you mind forwarding it and "
-                "then saving that new message? Thanks!",
+                "Bot agak cacat oleh telegram, sehingga sulit bagi bot untuk "
+                "berinteraksi dengan bot lain, jadi saya tidak dapat menyimpan pesan ini "
+                "seperti yang biasanya saya lakukan - apakah Anda keberatan meneruskannya dan "
+                "lalu simpan pesan baru itu? terima kasih!",
             )
         return
 
@@ -309,7 +309,7 @@ def clear(update: Update, context: CallbackContext):
         notename = args[0].lower()
 
         if sql.rm_note(chat_id, notename):
-            update.effective_message.reply_text("Successfully removed note.")
+            update.effective_message.reply_text("Berhasil menghapus catatan.")
         else:
             update.effective_message.reply_text("That's not a note in my database!")
 
@@ -320,7 +320,7 @@ def clearall(update: Update, context: CallbackContext):
     member = chat.get_member(user.id)
     if member.status != "creator" and user.id not in DRAGONS:
         update.effective_message.reply_text(
-            "Only the chat owner can clear all notes at once.",
+            "Hanya pemilik obrolan yang dapat menghapus semua catatan sekaligus.",
         )
     else:
         buttons = InlineKeyboardMarkup(
@@ -335,7 +335,7 @@ def clearall(update: Update, context: CallbackContext):
             ],
         )
         update.effective_message.reply_text(
-            f"Are you sure you would like to clear ALL notes in {chat.title}? This action cannot be undone.",
+            f"Apakah Anda yakin ingin menghapus semua catatan di {chat.title}? Tindakan ini tidak bisa dibatalkan.",
             reply_markup=buttons,
             parse_mode=ParseMode.MARKDOWN,
         )
@@ -353,23 +353,23 @@ def clearall_btn(update: Update, context: CallbackContext):
                 for notename in note_list:
                     note = notename.name.lower()
                     sql.rm_note(chat.id, note)
-                message.edit_text("Deleted all notes.")
+                message.edit_text("Menghapus semua catatan.")
             except BadRequest:
                 return
 
         if member.status == "administrator":
-            query.answer("Only owner of the chat can do this.")
+            query.answer("Hanya pemilik obrolan yang dapat melakukan ini.")
 
         if member.status == "member":
             query.answer("You need to be admin to do this.")
     elif query.data == "notes_cancel":
         if member.status == "creator" or query.from_user.id in DRAGONS:
-            message.edit_text("Clearing of all notes has been cancelled.")
+            message.edit_text("Menghapus semua catatan telah dibatalkan.")
             return
         if member.status == "administrator":
-            query.answer("Only owner of the chat can do this.")
+            query.answer("Hanya pemilik obrolan yang dapat melakukan ini.")
         if member.status == "member":
-            query.answer("You need to be admin to do this.")
+            query.answer("Anda harus menjadi admin untuk melakukan ini.")
 
 
 @connection_status
@@ -377,18 +377,16 @@ def list_notes(update: Update, context: CallbackContext):
     entity = update.effective_chat
     note_list = sql.get_all_chat_notes(entity.id)
     notes = len(note_list) + 1
-    msg = f"Daftar catatan dalam {entity.title}\n\n"
-    msgg = "\nAnda dapat mengambil catatan ini dengan menggunakan `/get notename` atau `#notename"
+    msg = f"Daftar catatan dalam {entity.title}\n\n**[Gunakan]** ⪼ `/get notename` untuk mendapatkan catatan\n"
     for note_id, note in zip(range(1, notes), note_list):
         if note_id < 10:
             note_name = f"⪼ `{(note.name.lower())}`\n"
         else:
             note_name = f"⪼ `{(note.name.lower())}`\n"
-        if len(msg) + len(note_name) + msgg > MAX_MESSAGE_LENGTH:
+        if len(msg) + len(note_name) > MAX_MESSAGE_LENGTH:
             update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
             msg = ""
         msg += note_name
-        msg += msgg
 
     if not note_list:
         try:
