@@ -381,10 +381,9 @@ def list_notes(update: Update, context: CallbackContext):
     for note_id, note in zip(range(1, notes), note_list):
         if note_id < 10:
             note_name = f"⪼ `{(note.name.lower())}`\n"
-            note_name = "\nAnda dapat mengambil catatan ini dengan menggunakan `/get notename` atau `#notename"
         else:
             note_name = f"⪼ `{(note.name.lower())}`\n"
-            note_name = "\nAnda dapat mengambil catatan ini dengan menggunakan `/get notename` atau `#notename"
+            msg = msg + "\nAnda dapat mengambil catatan ini dengan menggunakan `/get notename` atau `#notename"
         if len(msg) + len(note_name) > MAX_MESSAGE_LENGTH:
             update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
             msg = ""
