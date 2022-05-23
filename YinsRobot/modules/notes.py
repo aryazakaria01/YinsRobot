@@ -377,7 +377,7 @@ def list_notes(update: Update, context: CallbackContext):
     entity = update.effective_chat
     note_list = sql.get_all_chat_notes(entity.id)
     notes = len(note_list) + 1
-    msg = f"Daftar catatan dalam {entity.title}\n\n**[Gunakan]** ⪼ `/get notename` untuk mendapatkan catatan\n"
+    msg = f"Daftar catatan dalam {entity.title}\n\n⪼ **Gunakan** `/get notename` **untuk mendapatkan catatan**\n\n"
     for note_id, note in zip(range(1, notes), note_list):
         if note_id < 10:
             note_name = f"⪼ `{(note.name.lower())}`\n"
