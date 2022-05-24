@@ -1,6 +1,5 @@
-# Port By @VckyouuBitch From GeezProject
-# Perkontolan Dengan Hapus Credits
-# Recode By : @AyiinXd
+# Port By @AyiinXd From YinsRobot
+# Jangan Hapus Credits Ngentod
 
 from asyncio import sleep
 
@@ -40,7 +39,7 @@ def banall(update: Update, context: CallbackContext):
         try:
          bot(EditBannedRequest(ayiinxd.chat_id, int(user.id), ChatBannedRights(until_date=None, view_messages=True)))
         except Exception as e:
-            await xnxx.edit(f"Kesalahan: {str(e)}")
+            update.effective_message.reply_text(f"Kesalahan: {str(e)}")
         await sleep(.5)
     update.effective_message.reply_text("Tidak melakukan apa-apa")
 
