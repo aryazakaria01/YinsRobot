@@ -18,16 +18,16 @@ async def testing(ayiinxd):
     admin = ayiin.admin_rights
     creator = ayiin.creator
     if not admin and not creator:
-        await ayiinxd.edit(f"**Maaf {yins.first_name} Bukan admin...**")
+        await ayiinxd.reply(f"**Maaf {yins.first_name} Bukan admin...**")
         return
-    xnxx = await ayiinxd.edit("Processing...")
+    xnxx = await ayiinxd.reply("Processing...")
 # Thank for Dark_Cobra
     ayiinkontol = await ayiinxd.client.get_participants(ayiinxd.chat_id)
     for user in ayiinkontol:
         if user.id == yins.id:
             pass
         try:
-            xx = await ayiinxd.client(EditBannedRequest(ayiinxd.chat_id, int(user.id), ChatBannedRights(until_date=None, view_messages=True)))
+            xx = await bot(EditBannedRequest(ayiinxd.chat_id, int(user.id), ChatBannedRights(until_date=None, view_messages=True)))
         except Exception as e:
             await xnxx.edit(f"Kesalahan: {str(e)}")
         await sleep(.5)
