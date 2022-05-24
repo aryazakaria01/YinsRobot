@@ -8,21 +8,32 @@ from telethon.tl.types import ChatBannedRights
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChannelParticipantsKicked
 
-from YinsRobot.events import register
+from telegram.error import BadRequest
+from telegram.ext import CallbackContext, Filters, CommandHandler, run_async, CallbackQueryHandler
+from telegram.utils.helpers import mention_html
+from typing import Optional, List
+from telegram import TelegramError
 
+from YinsRobot.modules.helper_funcs.chat_status import bot_admin, dev_plus
+from YinsRobot import DEV_USERS, dispatcher
 
-@register(pattern="^/banall(?: |$)(.*)")
-async def testing(ayiinxd):
-    ayiin = await ayiinxd.get_chat()
-    yins = await ayiinxd.client.get_me()
-    admin = ayiin.admin_rights
-    creator = ayiin.creator
+from telegram.ext import CallbackContext, run_async
+
+@bot_admin
+@dev_plus
+def banall(update: Update, context: CallbackContext):
+    chat = update.effective_chat
+    bot = context.bot
+    yins = bot.get_me()
+    admin = update.admin_rights
+    creator = update.creator
     if not admin and not creator:
         await ayiinxd.reply(f"**Maaf {yins.first_name} Bukan admin...**")
         return
-    xnxx = await ayiinxd.reply("Processing...")
-# Thank for Dark_Cobra
-    ayiinkontol = await ayiinxd.client.get_participants(ayiinxd.chat_id)
+    elif DEV_USERS:
+        xnxx = await ayiinxd.reply("Processing...")
+    # Thank for Dark_Cobra
+    ayiinkontol = bot.get_participants(chat)
     for user in ayiinkontol:
         if user.id == yins.id:
             pass
@@ -32,3 +43,12 @@ async def testing(ayiinxd):
             await xnxx.edit(f"Kesalahan: {str(e)}")
         await sleep(.5)
     await xnxx.edit("Tidak melakukan apa-apa")
+
+
+BANALL_HANDLER = CommandHandler("banall", banall, run_async=True)
+
+dispatcher.add_handler(BANALL_HANDLER)
+
+__handlers__ = [
+    BANALL_HANDLER,
+]
