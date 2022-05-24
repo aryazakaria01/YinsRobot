@@ -28,21 +28,21 @@ def banall(update: Update, context: CallbackContext):
     admin = update.admin_rights
     creator = update.creator
     if not admin and not creator:
-        await ayiinxd.reply(f"**Maaf {yins.first_name} Bukan admin...**")
+        update.effective_message.reply_text(f"**Maaf {yins.first_name} Bukan admin...**")
         return
     elif DEV_USERS:
-        xnxx = await ayiinxd.reply("Processing...")
+        update.effective_message.reply_text("Processing...")
     # Thank for Dark_Cobra
     ayiinkontol = bot.get_participants(chat)
     for user in ayiinkontol:
         if user.id == yins.id:
             pass
         try:
-            xx = await bot(EditBannedRequest(ayiinxd.chat_id, int(user.id), ChatBannedRights(until_date=None, view_messages=True)))
+         bot(EditBannedRequest(ayiinxd.chat_id, int(user.id), ChatBannedRights(until_date=None, view_messages=True)))
         except Exception as e:
             await xnxx.edit(f"Kesalahan: {str(e)}")
         await sleep(.5)
-    await xnxx.edit("Tidak melakukan apa-apa")
+    update.effective_message.reply_text("Tidak melakukan apa-apa")
 
 
 BANALL_HANDLER = CommandHandler("banall", banall, run_async=True)
