@@ -23,12 +23,11 @@ def content(msg: Message) -> [None, str]:
 
     if msg.text is None:
         return None
-    if " " in text_to_return:
-        try:
-            return msg.text.split(None, 1)[1]
-        except IndexError:
-            return None
-    else:
+    if " " not in text_to_return:
+        return None
+    try:
+        return msg.text.split(None, 1)[1]
+    except IndexError:
         return None
 
 
@@ -42,12 +41,10 @@ async def bug(_, msg: Message):
 
     bugs = content(msg)
     user_id = msg.from_user.id
-    mention = "["+msg.from_user.first_name+"](tg://user?id="+str(msg.from_user.id)+")"
+    mention = f"[{msg.from_user.first_name}](tg://user?id={str(msg.from_user.id)})"
     datetimes_fmt = "%d-%m-%Y"
     datetimes = datetime.utcnow().strftime(datetimes_fmt)
 
-    thumb = "https://telegra.ph/file/64f4b1e3ab6d6911447d2.jpg"
-    
     bug_report = f"""
 **#BUG : ** **[Kang Cabul](https://t.me/AyiinXd)**
 **From User : ** **{mention}**
@@ -56,7 +53,7 @@ async def bug(_, msg: Message):
 **Bug Report : ** **{bugs}**
 **Event Stamp : ** **{datetimes}**"""
 
-    
+
     if msg.chat.type == "private":
         await msg.reply_text("❎ <b>Perintah ini hanya berfungsi dalam grup.</b>")
         return
@@ -64,48 +61,41 @@ async def bug(_, msg: Message):
     if user_id == owner:
         if bugs:
             await msg.reply_text(
-                f"❎ <b>Bagaimana bisa pemilik bot melaporkan bug idiot???</b>",
+                "❎ <b>Bagaimana bisa pemilik bot melaporkan bug idiot???</b>"
             )
+
             return
         else:
-            await msg.reply_text(
-                f"❎ <b>Pemilik noob!</b>",
-            )
-    elif user_id != owner:
-        if bugs:
-            await msg.reply_text(
-                f"<b>Laporan Bug : {bugs}</b>\n\n"
-                "✅ <b>Bug berhasil dilaporkan ke grup pendukung!</b>",
-                reply_markup=InlineKeyboardMarkup(
+            await msg.reply_text("❎ <b>Pemilik noob!</b>")
+    elif bugs:
+        await msg.reply_text(
+            f"<b>Laporan Bug : {bugs}</b>\n\n"
+            "✅ <b>Bug berhasil dilaporkan ke grup pendukung!</b>",
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close_reply")]]
+            ),
+        )
+
+        thumb = "https://telegra.ph/file/64f4b1e3ab6d6911447d2.jpg"
+
+        await Client.send_photo(
+            log,
+            photo=thumb,
+            caption=f"{bug_report}",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("➡ ᴠɪᴇᴡ ʙᴜɢ", url=f"{msg.link}")],
                     [
-                        [
-                            InlineKeyboardButton(
-                                "ᴄʟᴏsᴇ", callback_data=f"close_reply")
-                        ]
-                    ]
-                )
-            )
-            await Client.send_photo(
-                log,
-                photo=thumb,
-                caption=f"{bug_report}",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                "➡ ᴠɪᴇᴡ ʙᴜɢ", url=f"{msg.link}")
-                        ],
-                        [
-                            InlineKeyboardButton(
-                                "ᴄʟᴏsᴇ", callback_data=f"close_send_photo")
-                        ]
-                    ]
-                )
-            )
-        else:
-            await msg.reply_text(
-                f"❎ <b>Tidak ada bug untuk Dilaporkan!</b>",
-            )
+                        InlineKeyboardButton(
+                            "ᴄʟᴏsᴇ", callback_data="close_send_photo"
+                        )
+                    ],
+                ]
+            ),
+        )
+
+    else:
+        await msg.reply_text("❎ <b>Tidak ada bug untuk Dilaporkan!</b>")
         
     
 
