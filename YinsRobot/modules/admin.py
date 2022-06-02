@@ -147,7 +147,7 @@ def setchat_title(update: Update, context: CallbackContext):
         return
 
     try:
-        context.bot.set_chat_title(int(chat.id), str(title))
+        context.bot.set_chat_title(int(chat.id), title)
         msg.reply_text(
             f"Successfully set <b>{title}</b> as new chat title!",
             parse_mode=ParseMode.HTML,
@@ -776,7 +776,7 @@ def adminlist(update, context):
         )
 
     administrators = bot.getChatAdministrators(chat_id)
-    text = "Admin di <b>{}</b>:".format(html.escape(update.effective_chat.title))
+    text = f"Admin di <b>{html.escape(update.effective_chat.title)}</b>:"
 
     for admin in administrators:
         user = admin.user
@@ -789,9 +789,12 @@ def adminlist(update, context):
             name = "{}".format(
                 mention_html(
                     user.id,
-                    html.escape(user.first_name + " " + (user.last_name or "")),
-                ),
+                    html.escape(
+                        f"{user.first_name} " + ((user.last_name or ""))
+                    ),
+                )
             )
+
 
         if user.is_bot:
             administrators.remove(admin)
@@ -822,17 +825,18 @@ def adminlist(update, context):
             name = "{}".format(
                 mention_html(
                     user.id,
-                    html.escape(user.first_name + " " + (user.last_name or "")),
-                ),
+                    html.escape(
+                        f"{user.first_name} " + ((user.last_name or ""))
+                    ),
+                )
             )
-        # if user.username:
-        #    name = escape_markdown("@" + user.username)
+
         if status == "administrator":
             if custom_title:
                 try:
                     custom_admin_list[custom_title].append(name)
                 except KeyError:
-                    custom_admin_list.update({custom_title: [name]})
+                    custom_admin_list[custom_title] = [name]
             else:
                 normal_admin_list.append(name)
 
@@ -868,8 +872,7 @@ def button(update: Update, context: CallbackContext) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
     bot: Optional[Bot] = context.bot
-    match = re.match(r"demote_\((.+?)\)", query.data)
-    if match:
+    if match := re.match(r"demote_\((.+?)\)", query.data):
         user_id = match.group(1)
         chat: Optional[Chat] = update.effective_chat
         member = chat.get_member(user_id)
@@ -886,32 +889,31 @@ def button(update: Update, context: CallbackContext) -> str:
             can_restrict_members=bot_member.can_restrict_members,
             can_pin_messages=bot_member.can_pin_messages,
             can_manage_voice_chats=bot_member.can_manage_voice_chats,
-        )                
-        demoted = bot.promoteChatMember(
-                      chat.id,
-                      user_id,
-                      can_change_info=False,
-                      can_post_messages=False,
-                      can_edit_messages=False,
-                      can_delete_messages=False,
-                      can_invite_users=False,
-                      can_restrict_members=False,
-                      can_pin_messages=False,
-                      can_promote_members=False,
-                      can_manage_voice_chats=False,
         )
-        if demoted:
-        	update.effective_message.edit_text(
-        	    f"Admin {mention_html(user.id, user.first_name)} Demoted {mention_html(member.user.id, member.user.first_name)}!",
-        	    parse_mode=ParseMode.HTML,
-        	)
-        	query.answer("Demoted!")
-        	return (
-                    f"<b>{html.escape(chat.title)}:</b>\n" 
-                    f"#DEMOTE\n" 
-                    f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
-                    f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}"
-                )
+        if demoted := bot.promoteChatMember(
+            chat.id,
+            user_id,
+            can_change_info=False,
+            can_post_messages=False,
+            can_edit_messages=False,
+            can_delete_messages=False,
+            can_invite_users=False,
+            can_restrict_members=False,
+            can_pin_messages=False,
+            can_promote_members=False,
+            can_manage_voice_chats=False,
+        ):
+            update.effective_message.edit_text(
+                f"Admin {mention_html(user.id, user.first_name)} Demoted {mention_html(member.user.id, member.user.first_name)}!",
+                parse_mode=ParseMode.HTML,
+            )
+            query.answer("Demoted!")
+            return (
+                f"<b>{html.escape(chat.title)}:</b>\n" 
+                f"#DEMOTE\n" 
+                f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
+                f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}"
+            )
     else:
         update.effective_message.edit_text(
             "This user is not promoted or has left the group!"
